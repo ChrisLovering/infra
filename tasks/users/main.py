@@ -1,6 +1,6 @@
 from pyinfra.operations import server
 
-from tasks.users.users import users
+from tasks.users.secrets import users
 
 for user in users:
     server.user(
