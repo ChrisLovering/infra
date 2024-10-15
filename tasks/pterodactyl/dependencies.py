@@ -22,7 +22,9 @@ if download_mariadb_setup_script.changed:
 if download_mariadb_setup_script.changed:
     apt.update()
 
-php_packages = [f"php8.3-{ext}" for ext in ("common", "cli", "gd", "mysql", "mbstring", "bcmath", "xml", "fpm", "curl", "zip")]
+php_packages = [
+    f"php8.3-{ext}" for ext in ("common", "cli", "gd", "mysql", "mbstring", "bcmath", "xml", "fpm", "curl", "zip")
+]
 apt.packages(
     name="Install pterodactyl dependencies",
     packages=php_packages + ["php8.3", "mariadb-server", "nginx", "tar", "unzip", "git", "redis-server"],

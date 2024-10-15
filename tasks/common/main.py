@@ -72,5 +72,16 @@ files.template(
 
 apt.packages(
     name="Install system admin tools",
-    packages=["tmux", "btop", "fortune-mod", "cowsay", "software-properties-common", "curl", "apt-transport-https", "ca-certificates", "gnupg", "python3-launchpadlib"],
+    packages=[
+        "tmux",
+        "btop",
+        "fortune-mod",
+        "cowsay",
+        "software-properties-common",
+        "curl",
+        "apt-transport-https",
+        "ca-certificates",
+        "gnupg",
+        "python3-launchpadlib",
+    ],
 )
