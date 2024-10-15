@@ -73,6 +73,9 @@ files.template(
 apt.packages(
     name="Install system admin tools",
     packages=[
+        "net-tools",
+        "pwgen",
+        "sl",
         "tmux",
         "btop",
         "fortune-mod",
