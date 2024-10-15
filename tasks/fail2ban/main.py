@@ -7,7 +7,7 @@ template_dir = Path(__file__).parent / "templates"
 apt.packages(
     name="Install fail2ban",
     packages=["fail2ban"],
-    present=True
+    present=True,
 )
 
 create_fail2ban_config = files.template(

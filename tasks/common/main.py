@@ -6,9 +6,6 @@ from pyinfra.operations import apt, files, server, systemd
 
 template_dir = Path(__file__).parent / "templates"
 
-apt.update()
-apt.upgrade()
-
 server.hostname(
     name="Update hostname to match inventory",
     hostname=host.name,
@@ -75,5 +72,5 @@ files.template(
 
 apt.packages(
     name="Install system admin tools",
-    packages=["tmux", "btop", "fortune-mod", "cowsay"],
+    packages=["tmux", "btop", "fortune-mod", "cowsay", "software-properties-common", "curl", "apt-transport-https", "ca-certificates", "gnupg", "python3-launchpadlib"],
 )
