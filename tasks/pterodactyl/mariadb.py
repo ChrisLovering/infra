@@ -2,12 +2,11 @@ from pyinfra.operations import mysql
 
 from tasks.pterodactyl import secrets
 
-for user in secrets.db_users:
-    mysql.user(
-        name=f"Create MariaDB {user["user"]} user",
-        user=user["user"],
-        password=user["password"],
-    )
+mysql.user(
+    name=f"Create MariaDB {secrets.db_user["username"]} user",
+    user=secrets.db_user["username"],
+    password=secrets.db_user["password"],
+)
 
 mysql.database(
     name="Create panel database",
