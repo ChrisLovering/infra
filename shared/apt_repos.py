@@ -4,7 +4,7 @@ from pyinfra.facts.server import LsbRelease
 from pyinfra.operations import apt, files, server
 
 
-def add_repo(name: str, repo_url: str, key_url: str, key_name: str) -> OperationMeta:
+def add_repo(name: str, repo_url: str, key_url: str, key_name: str, repo_name: str = "main") -> OperationMeta:
     """Add an apt repo, including signing keys."""
     download_key = files.download(
         name=f"Download the {name} apt signing key",
@@ -23,5 +23,5 @@ def add_repo(name: str, repo_url: str, key_url: str, key_name: str) -> Operation
     host_release_codename = host.get_fact(LsbRelease)["codename"]
     return apt.repo(
         name=f"Add the {key_name} apt repo",
-        src=f"deb [signed-by=/usr/share/keyrings/{key_name}.gpg] {repo_url} {host_release_codename} main",
+        src=f"deb [signed-by=/usr/share/keyrings/{key_name}.gpg] {repo_url} {host_release_codename} {repo_name}",
     )
