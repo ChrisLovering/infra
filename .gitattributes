@@ -1,1 +1,2 @@
 **/secrets.py filter=git-crypt diff=git-crypt
+tasks/certbot/templates/certbot.ini filter=git-crypt diff=git-crypt
