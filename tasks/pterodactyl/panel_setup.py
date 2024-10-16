@@ -10,8 +10,8 @@ template_dir = Path(__file__).parent / "templates"
 files.directory(
     name="Create pterodactyl web folder",
     path="/var/www/pterodactyl",
-    user="root",
-    group="root",
+    user="www-data",
+    group="www-data",
 )
 
 download_panel_tar = files.download(
