@@ -39,7 +39,7 @@ php_packages = [
 ]
 apt.packages(
     name="Install pterodactyl dependencies",
-    packages=php_packages + ["php8.3", "mariadb-server", "nginx", "tar", "unzip", "git"],
+    packages=php_packages + ["php8.3", "nginx", "tar", "unzip", "git"],
     present=True,
 )
 
