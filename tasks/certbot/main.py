@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from pyinfra import host
+from pyinfra.facts.files import File
 from pyinfra.operations import apt, files, server
 
 from tasks.certbot import vars
@@ -36,13 +38,16 @@ for path in ("/etc/letsencrypt/live", "/etc/letsencrypt/archive"):
         recursive=True,
     )
 
-server.shell(
-    name="Request certificates for configured domains",
-    commands=[
-        f"certbot certonly --agree-tos --non-interactive --email {vars.certbot_email} --dns-cloudflare-propagation-seconds 30 "
-        f"--dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d {vars.certbot_domains}"
-    ],
-)
+for domain in vars.certbot_domains:
+    if host.get_fact(File, f"/etc/letsencrypt/live/{domain}/fullchain.pem"):
+        continue
+    server.shell(
+        name=f"Request certificate for {domain}",
+        commands=[
+            f"certbot certonly --agree-tos --non-interactive --email {vars.certbot_email} --dns-cloudflare-propagation-seconds 30 "
+            f"--dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d {domain}"
+        ],
+    )
 
 files.put(
     name="Add post-renewal nginx reload hook",
