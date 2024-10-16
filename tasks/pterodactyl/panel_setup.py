@@ -83,7 +83,7 @@ server.crontab(
 
 files.put(
     name="Add pterodactyl queue worker service file",
-    src=template_dir + "pteroq.service",
+    src=template_dir / "pteroq.service",
     dest="/etc/systemd/system/pteroq.service",
     user="root",
     group="root",
