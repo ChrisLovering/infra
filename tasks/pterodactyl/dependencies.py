@@ -1,5 +1,17 @@
 from pyinfra.operations import apt, files, server
 
+from shared.apt_repos import add_repo
+
+add_php_repo = add_repo(
+    name="PHP",
+    repo_url="https://packages.sury.org/php/",
+    key_url="https://packages.sury.org/php/apt.gpg",
+    key_name="sury-php-archive-keyring",
+)
+
+if add_php_repo.changed:
+    apt.update()
+
 files.directory(
     name="Ensure script dir exists",
     path="/opt/install_scripts",
@@ -27,7 +39,7 @@ php_packages = [
 ]
 apt.packages(
     name="Install pterodactyl dependencies",
-    packages=php_packages + ["php8.3", "mariadb-server", "nginx", "tar", "unzip", "git", "redis-server"],
+    packages=php_packages + ["php8.3", "mariadb-server", "nginx", "tar", "unzip", "git"],
     present=True,
 )
 
