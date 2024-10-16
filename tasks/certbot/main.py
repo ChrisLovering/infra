@@ -39,8 +39,10 @@ for path in ("/etc/letsencrypt/live", "/etc/letsencrypt/archive"):
     )
 
 for domain in vars.certbot_domains:
-    if host.get_fact(File, f"/etc/letsencrypt/live/{domain}/fullchain.pem"):
+    canary_domain = domain.split(",")[0]
+    if host.get_fact(File, f"/etc/letsencrypt/live/{canary_domain}/fullchain.pem") is not None:
         continue
+
     server.shell(
         name=f"Request certificate for {domain}",
         commands=[
