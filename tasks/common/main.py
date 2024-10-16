@@ -89,5 +89,6 @@ apt.packages(
         "tar",
         "unzip",
         "git",
+        "unattended-upgrades",
     ],
 )
