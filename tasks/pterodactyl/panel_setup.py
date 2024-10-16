@@ -61,7 +61,7 @@ if download_panel_tar.changed:
             "php artisan p:user:make "
             f"--email {panel_admin_user["email"]} --username {panel_admin_user["username"]} "
             f"--name-first {panel_admin_user["name_first"]} --name-last {panel_admin_user["name_last"]} "
-            f"--password {panel_admin_user["password"]} --admin {panel_admin_user["admin"]} "
+            f"--password {panel_admin_user["password"]} --admin yes "
             "--no-interaction"
         ],
     )
