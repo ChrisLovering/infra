@@ -2,7 +2,8 @@ from pathlib import Path
 
 from pyinfra.operations import files, server
 
-from tasks.pterodactyl.secrets import db_user, panel_admin_user
+from tasks.mariadb.secrets import pterodactyl_db_user
+from tasks.pterodactyl.secrets import panel_admin_user
 
 template_dir = Path(__file__).parent / "templates"
 
@@ -46,7 +47,7 @@ if download_panel_tar.changed:
         name="Setup environment",
         commands=[
             "cd /var/www/pterodactyl && php artisan p:environment:setup --author chris.lovering.95@gmail.com --url panel.chrisjl.dev --timezone Europe/London --no-interaction",
-            f"cd /var/www/pterodactyl && php artisan p:environment:database --password {db_user["password"]} --no-interaction",
+            f"cd /var/www/pterodactyl && php artisan p:environment:database --password {pterodactyl_db_user["password"]} --no-interaction",
         ],
     )
     server.shell(

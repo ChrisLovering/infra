@@ -31,9 +31,9 @@ apt.packages(
 )
 
 mysql.user(
-    name=f"Create MariaDB {secrets.db_user["username"]} user",
-    user=secrets.db_user["username"],
-    password=secrets.db_user["password"],
+    name=f"Create MariaDB {secrets.pterodactyl_db_user["username"]} user",
+    user=secrets.pterodactyl_db_user["username"],
+    password=secrets.pterodactyl_db_user["password"],
 )
 
 mysql.database(
