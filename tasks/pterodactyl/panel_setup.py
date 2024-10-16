@@ -87,12 +87,7 @@ files.put(
     user="root",
     group="root",
 )
-server.service(
-    name="Enable redis server on boot",
-    service="redis-server",
-    enabled=True,
-    running=True,
-)
+
 server.service(
     name="Enable pterodactyl queue worker server on boot",
     service="pteroq.service",

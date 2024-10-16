@@ -1,4 +1,4 @@
-from pyinfra.operations import apt
+from pyinfra.operations import apt, server
 
 from shared.apt_repos import add_repo
 
@@ -15,4 +15,11 @@ if add_redis_repo.changed:
 apt.packages(
     name="Install redis server",
     packages=["redis-server"],
+)
+
+server.service(
+    name="Enable redis server on boot",
+    service="redis-server",
+    enabled=True,
+    running=True,
 )
