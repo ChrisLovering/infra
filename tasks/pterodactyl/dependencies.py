@@ -34,12 +34,21 @@ if download_mariadb_setup_script.changed:
 if download_mariadb_setup_script.changed:
     apt.update()
 
-php_packages = [
-    f"php8.3-{ext}" for ext in ("common", "cli", "gd", "mysql", "mbstring", "bcmath", "xml", "fpm", "curl", "zip")
-]
 apt.packages(
     name="Install pterodactyl dependencies",
-    packages=php_packages + ["php8.3", "nginx", "tar", "unzip", "git"],
+    packages=[
+        "php8.3",
+        "php8.3-common",
+        "php8.3-cli",
+        "php8.3-gd",
+        "php8.3-mysql",
+        "php8.3-mbstring",
+        "php8.3-bcmath",
+        "php8.3-xml",
+        "php8.3-fpm",
+        "php8.3-curl",
+        "php8.3-zip",
+    ],
     present=True,
 )
 

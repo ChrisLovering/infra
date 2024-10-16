@@ -86,5 +86,8 @@ apt.packages(
         "ca-certificates",
         "gnupg",
         "python3-launchpadlib",
+        "tar",
+        "unzip",
+        "git",
     ],
 )
